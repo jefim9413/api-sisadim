@@ -9,3 +9,33 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model City {
+  id          String        @id @default(uuid())
+  name        String        @unique
+  password    String
+  created_at  DateTime      @default(now())
+  instituicao Instituicao[]
+
+  @@map("city")
+}
+
+model Instituicao {
+  id      String  @id @default(uuid())
+  name    String
+  City    City    @relation(fields: [city_id], references: [id])
+  city_id String
+  turma   Turma[]
+
+  @@map("instituicao")
+}
+
+model Turma {
+  id             String       @id @default(uuid())
+  name           String
+  database       String
+  Instituicao    Instituicao? @relation(fields: [instituicao_id], references: [id])
+  instituicao_id String?
+
+  @@map("turma")
+}
