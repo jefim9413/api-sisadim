@@ -10,9 +10,9 @@ export class CityRepository implements ICityRepository {
     return city
   }
 
-  async findByCity(name: string): Promise<City[] | null> {
-    const city = await prisma.city.findMany({ where: { name } })
-
+  async findByCity(name: string): Promise<City> {
+    const city = await prisma.city.findFirst({ where: { name } })
+    console.log('ss')
     return city
   }
 }
