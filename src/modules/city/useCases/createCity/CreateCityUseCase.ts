@@ -1,5 +1,6 @@
 import { inject, injectable } from 'tsyringe'
 import { ICityRepository } from '../../repositories/ICityRepository'
+import { hash } from 'bcryptjs'
 
 interface CityUseCaseRequest {
   name: string
@@ -13,8 +14,11 @@ export class CreateCityUseCase {
   ) {}
 
   async execute({ name, password }: CityUseCaseRequest) {
-    const city = await this.cityRepository.create({ name, password })
-
+    const passwordHash = await hash(password, 8)
+    const city = await this.cityRepository.create({
+      name,
+      password: passwordHash,
+    })
     return city
   }
 }
