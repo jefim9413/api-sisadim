@@ -1,6 +1,7 @@
 import { inject, injectable } from 'tsyringe'
 import { ICityRepository } from '../../repositories/ICityRepository'
 import { sign } from 'jsonwebtoken'
+import { compare } from 'bcryptjs'
 
 interface ICityRequest {
   name: string
@@ -23,11 +24,15 @@ export class AuthenticateUseCase {
 
   async execute({ name, password }: ICityRequest) {
     const city = await this.cityRepository.findByCity(name)
-
     if (!city) {
-      throw new Error('ciy or password not found')
+      throw new Error('city or password not found')
     }
 
+    const passwordMatch = await compare(password, city.password)
+
+    if (!passwordMatch) {
+      throw new Error('Email or password incorrect!')
+    }
     const token = sign({}, 'ac81a9ff47be796b7f2e4ccad808e14a', {
       subject: city.id,
       expiresIn: '99d',
