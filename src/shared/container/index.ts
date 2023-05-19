@@ -12,3 +12,8 @@ container.registerSingleton<IInstitutionRepository>(
   'InstitutionRepository',
   InstitutionRepository,
 )
+
+container.registerSingleton<ITurmaRepository>(
+  'TurmaRepository',
+  TurmaRepository,
+)
