@@ -1,5 +1,14 @@
 import { container } from 'tsyringe'
 import { CityRepository } from '../../modules/city/infra/prisma/repositories/CityRepository'
 import { ICityRepository } from '../../modules/city/repositories/ICityRepository'
+import { IInstitutionRepository } from '../../modules/institution/repositories/IInstitutionRepository'
+import { InstitutionRepository } from '../../modules/institution/infra/prisma/repositories/InstitutionRepository'
+import { ITurmaRepository } from '../../modules/turmas/repositories/ITurmaRepository'
+import { TurmaRepository } from '../../modules/turmas/infra/prisma/repositories/TurmaRepository'
 
 container.registerSingleton<ICityRepository>('CityRepository', CityRepository)
+
+container.registerSingleton<IInstitutionRepository>(
+  'InstitutionRepository',
+  InstitutionRepository,
+)
