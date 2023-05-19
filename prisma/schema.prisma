@@ -15,27 +15,27 @@ model City {
   name        String        @unique
   password    String
   created_at  DateTime      @default(now())
-  instituicao Instituicao[]
+  instituicao Institution[]
 
   @@map("city")
 }
 
-model Instituicao {
+model Institution {
   id      String  @id @default(uuid())
   name    String
-  City    City    @relation(fields: [city_id], references: [id])
-  city_id String
+  city    City?   @relation(fields: [city_id], references: [id])
+  city_id String?
   turma   Turma[]
 
-  @@map("instituicao")
+  @@map("institution")
 }
 
 model Turma {
   id             String       @id @default(uuid())
   name           String
   database       String
-  Instituicao    Instituicao? @relation(fields: [instituicao_id], references: [id])
-  instituicao_id String?
+  instituicao    Institution? @relation(fields: [institution_id], references: [id])
+  institution_id String?
 
   @@map("turma")
 }
