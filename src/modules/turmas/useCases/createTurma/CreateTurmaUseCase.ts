@@ -1,6 +1,5 @@
 import { inject, injectable } from 'tsyringe'
 import { ITurmaRepository } from '../../repositories/ITurmaRepository'
-import { IInstitutionRepository } from '../../../institution/repositories/IInstitutionRepository'
 
 interface ICreateUseCaseRequest {
   name: string
