@@ -10,6 +10,6 @@ export class ListAllInstitutionController {
     const city_id = request.city.id
 
     const institution = await listAllInstitutionUseCase.execute(city_id)
-    return response.status(201).send(institution)
+    return response.json(institution)
   }
 }

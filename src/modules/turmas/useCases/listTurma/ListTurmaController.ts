@@ -10,6 +10,6 @@ export class ListTurmaController {
 
     const turma = await listTurmaUseCase.execute(city_id)
 
-    return response.status(201).send(turma)
+    return response.json(turma)
   }
 }
