@@ -19,11 +19,12 @@ model City {
 }
 
 model Institution {
-  id      String  @id @default(uuid())
-  name    String
-  city    City?   @relation(fields: [city_id], references: [id])
-  city_id String?
-  turma   Turma[]
+  id       String  @id @default(uuid())
+  name     String
+  database String
+  city     City?   @relation(fields: [city_id], references: [id])
+  city_id  String?
+  turma    Turma[]
 
   @@map("institution")
 }

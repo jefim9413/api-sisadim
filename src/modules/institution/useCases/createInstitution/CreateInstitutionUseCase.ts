@@ -4,6 +4,7 @@ import { IInstitutionRepository } from '../../repositories/IInstitutionRepositor
 interface IInstituicaoResquest {
   name: string
   city_id: string
+  database: string
 }
 
 @injectable()
@@ -13,10 +14,11 @@ export class CreateInstitutionUseCase {
     private institutionRepository: IInstitutionRepository,
   ) {}
 
-  async execute({ name, city_id }: IInstituicaoResquest) {
+  async execute({ name, city_id, database }: IInstituicaoResquest) {
     const institution = await this.institutionRepository.create({
       name,
       city_id,
+      database,
     })
     return institution
   }
