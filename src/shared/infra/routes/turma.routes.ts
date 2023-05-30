@@ -14,4 +14,8 @@ turmaRouter.post(
   createTurmaController.handle,
 )
 
-turmaRouter.get('/:institution_id', listTurmaController.handle)
+turmaRouter.get(
+  '/:institution_id',
+  ensureAuthenticated,
+  listTurmaController.handle,
+)
