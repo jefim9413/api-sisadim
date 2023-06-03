@@ -11,6 +11,6 @@ export class AuthenticateController {
       name,
     })
 
-    return response.status(201).json({ success: true, token })
+    return response.status(201).json(token)
   }
 }
